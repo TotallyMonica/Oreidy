@@ -1,0 +1,41 @@
+{{define "content"}}
+<div class="row justify-content-center">
+  <div class="col-12 col-lg-8 col-xl-6">
+    <div class="card shadow-sm">
+      <div class="card-header bg-white">
+        <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-2">
+          <h1 class="h4 mb-0">Input selector</h1>
+          <span class="badge text-bg-primary fs-6">Active: HDMI {{.Selected}}</span>
+        </div>
+      </div>
+      <div class="card-body">
+        {{if .Message}}
+        <div class="alert alert-{{.MessageType}} mb-4" role="alert">
+          {{.Message}}
+        </div>
+        {{end}}
+
+        <form method="post" action="/select">
+          <div class="list-group mb-4">
+            {{range .Ports}}
+            <label class="list-group-item d-flex align-items-center justify-content-between gap-3">
+              <span>
+                <span class="fw-semibold">{{.Name}}</span>
+                {{if .Active}}
+                <span class="badge text-bg-success ms-2">Selected</span>
+                {{end}}
+              </span>
+              <input class="form-check-input m-0" type="radio" name="port" value="{{.Number}}" {{if .Active}}checked{{end}}>
+            </label>
+            {{end}}
+          </div>
+
+          <div class="d-grid d-sm-flex justify-content-sm-end">
+            <button type="submit" class="btn btn-primary">Switch input</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{end}}

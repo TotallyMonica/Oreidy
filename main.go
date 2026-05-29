@@ -81,8 +81,8 @@ func main() {
 	defer closePort()
 
 	mux := initWeb()
-	log.Println("HDMI switch web interface listening on http://localhost:8080")
-	if err := http.ListenAndServe(":8080", mux); err != nil {
+	log.Println("HDMI switch web interface listening on http://localhost:3129")
+	if err := http.ListenAndServe(":3129", mux); err != nil {
 		log.Fatal(err)
 	}
 }
